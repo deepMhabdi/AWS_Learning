@@ -60,3 +60,59 @@ Accessed as:
 ```
 https://deep-portfolio.s3.amazonaws.com/index.html
 ```
+
+
+# SDK(Software Development Kit)
+
+An **SDK** is a collection of **tools, libraries, APIs, and documentation** that helps developers **build applications easily for a specific platform or service**.
+
+In simple words:
+
+SDK = Ready-made tools to talk to a service using code
+
+### What is AWS SDK?
+
+**AWS SDK** allows you to **access and manage AWS services programmatically** using programming languages.
+
+Instead of using:
+
+- AWS Console (UI)
+- AWS CLI (commands)
+
+You can use **code**.
+
+Supported Languages
+
+| SDK Name | Language |
+| --- | --- |
+| AWS SDK for JavaScript | JavaScript / Node.js |
+| AWS SDK for Python | Python (**Boto3**) |
+| AWS SDK for Java | Java |
+| AWS SDK for .NET | C# |
+| AWS SDK for Go | Go |
+| AWS SDK for Ruby | Ruby |
+| AWS SDK for PHP | PHP |
+
+### Example (Simple)
+
+### Without SDK (Console):
+
+- Open AWS Console
+- Upload file to S3 manually
+
+### With SDK (Code – JavaScript):
+
+```json
+import { S3Client,PutObjectCommand }from"@aws-sdk/client-s3";
+
+const client =newS3Client({region:"ap-south-1" });
+
+await client.send(
+newPutObjectCommand({
+Bucket:"my-bucket",
+Key:"test.txt",
+Body:"Hello AWS"
+  })
+);
+```
+This code uploads a file to **S3**
