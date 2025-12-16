@@ -1,0 +1,62 @@
+1. SAAS (Software As A Service)
+2. PAAS (Platform As A Service)
+3. IAAS (Infrastructure As a Service)
+
+# **AWS IAM (Identity and Access Management)**
+
+AWS IAM is a service that lets you control who can access the AWS resource and what actions they can perform.
+
+Basically: 
+IAM = Who can log in + What they are allowed to do.
+
+### Example (Very Simple)
+
+I (Deep)
+
+- Create **IAM User** → `deep-user`
+- Attach **Policy** → `AmazonS3ReadOnlyAccess`
+
+Result:
+
+You can **view S3 buckets**, but ❌ **cannot delete them**
+
+| Component | Meaning |
+| --- | --- |
+| **User** | A person (developer, admin, intern) |
+| **Group** | Collection of users with same permissions |
+| **Role** | Temporary permission (used by services like EC2, Lambda) |
+| **Policy** | Rules that define permissions (JSON format) |
+
+| Root User | IAM User |
+| --- | --- |
+| Full access | Limited access |
+| Very dangerous | Safe |
+| Should NOT be used daily | Should be used daily |
+
+# AWS S3 (Simple Storage Service)
+
+**Amazon S3** is an AWS service used to **store and retrieve data (files/objects)** securely from anywhere on the internet.
+
+In simple words:
+
+S3 = Cloud storage for files (images, videos, backups, websites, logs)
+
+How S3 Stores Data:
+
+| Term | Meaning |
+| --- | --- |
+| **Bucket** | Folder/container that stores files |
+| **Object** | The actual file (image, pdf, video) |
+| **Key** | File name + path |
+| **Region** | Location where bucket is created |
+
+### Example (Very Simple)
+
+- Bucket name: `deep-portfolio`
+- File uploaded: `index.html`
+
+Accessed as:
+
+```
+https://deep-portfolio.s3.amazonaws.com/index.html
+```
