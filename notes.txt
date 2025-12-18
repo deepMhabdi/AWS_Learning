@@ -116,3 +116,70 @@ Body:"Hello AWS"
 );
 ```
 This code uploads a file to **S3**
+
+# AWS Parameter Store
+
+**AWS Parameter Store** is a **secure storage service** used to **store configuration data and secrets** like:
+
+- Database passwords
+- API keys
+- Environment variables
+- Application configs
+
+In simple words:
+
+Parameter Store = Safe place to store secrets & config values
+
+| Type | Meaning |
+| --- | --- |
+| **String** | Plain text value |
+| **StringList** | Comma-separated values |
+| **SecureString** | Encrypted value (uses KMS) |
+
+## Security & Access
+
+- Encrypted using **AWS KMS**
+- Access controlled via **IAM policies**
+- No hardcoding secrets in code
+    - Supports versioning
+
+## Example: Access Parameter in Node.js (SDK)
+
+```json
+import {SSMClient,GetParameterCommand }from"@aws-sdk/client-ssm";
+
+const client =newSSMClient({region:"ap-south-1" });
+
+const response =await client.send(
+newGetParameterCommand({
+Name:"/prod/db/password",
+WithDecryption:true,
+  })
+);
+
+console.log(response.Parameter.Value);
+```
+
+### Key Takeaway
+
+Never hard-code secrets — use Parameter Store
+
+# AWS Cloud shell
+
+**AWS CloudShell** is a **browser-based command-line shell** that lets you **run AWS CLI commands directly from the AWS Console** — without installing anything on your local system.
+
+In simple words:
+
+CloudShell = Terminal inside AWS Console
+
+## Example Usage
+
+After opening CloudShell, you can directly run:
+
+```bash
+aws s3ls
+```
+
+Lists all S3 buckets in your account
+
+# AWS EC2 (Elastic Computing Cloud)
