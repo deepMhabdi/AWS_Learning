@@ -328,3 +328,135 @@ Reverse Proxy (ALB / Nginx)
 Ingress (Kubernetes)
 ↓
 Service → Pod
+
+
+# nohup (no hang up)
+
+`nohup` is a **Linux/Unix command** used to **run a process in the background** so that it **continues running even after you log out or close the terminal**.
+
+In simple words:
+
+nohup = keep program running after logout
+
+## Example (Very Common)
+
+### Run a Node.js app:
+
+```json
+nohup node app.js &
+```
+
+✔ App keeps running
+
+✔ Terminal can be closed
+
+## Stop a nohup Process
+
+```
+kill <PID>
+```
+
+Force stop:
+
+```
+kill -9 <PID>
+```
+
+## Real-Life Cloud / AWS Example
+
+On an **EC2 instance**, you deploy a backend:
+
+```bash
+nohup npm start &
+```
+
+- SSH connection drops ❌
+- App still running ✅
+
+# SSL VS TLS
+
+| SSL(Secure Sockets Layer) | TLS (Transport Layer Security) |
+| --- | --- |
+| Older protocol | New & secure |
+| Deprecated | Actively used |
+| Vulnerable | Strong encryption |
+| Term still used | Actual protocol |
+
+### HTTPS uses TLS, not SSL
+
+## Common Interview Questions (Quick)
+
+**Q: Is SSL still used?**
+
+A: No, TLS is used; SSL term is informal.
+
+**Q: What does HTTPS mean?**
+
+A: HTTP over TLS encryption.
+
+**Q: Who provides certificates in AWS?**
+
+A: AWS Certificate Manager (ACM).
+
+# AWS ECR(Elastic Container Registry)
+
+**Amazon ECR** is a **fully managed container image registry** used to **store, manage, and deploy Docker container images** securely.
+
+In simple words:
+
+ECR = Docker Hub, but private and inside AWS
+
+Key Components:
+
+| Component | Meaning |
+| --- | --- |
+| **Repository** | Stores container images |
+| **Image** | Docker image |
+| **Tag** | Version of image (`v1`, `latest`) |
+| **Registry** | AWS-managed image store |
+
+## Example
+
+You build a Docker image:
+
+```
+docker build -t my-app .
+```
+
+You push it to ECR:
+
+```
+123456789012.dkr.ecr.ap-south-1.amazonaws.com/my-app:latest
+```
+
+## Typical ECR Workflow:
+
+```
+Code
+ ↓
+Docker Build
+ ↓
+PushImage → ECR
+ ↓
+PullImage → ECS / EKS / EC2
+```
+
+## Real-Life Use Case
+
+- Store backend images
+- CI/CD pipelines
+- Microservices architecture
+- Production container deployments
+
+## ECR vs Docker Hub
+
+| ECR | Docker Hub |
+| --- | --- |
+| AWS-managed | Third-party |
+| IAM security | Username/password |
+| Private by default | Public by default |
+| Best for AWS | General use |
+
+## Memory Trick
+
+ECR = EC2 + Containers + Registry
