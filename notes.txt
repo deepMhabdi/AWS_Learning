@@ -183,3 +183,148 @@ aws s3ls
 Lists all S3 buckets in your account
 
 # AWS EC2 (Elastic Computing Cloud)
+
+**Amazon EC2** is a service that provides **virtual servers in the cloud** where you can run applications just like on a physical machine.
+
+In simple words:
+
+EC2 = Rent a computer on AWS
+
+| Component | Meaning |
+| --- | --- |
+| **Instance** | Virtual server |
+| **AMI** | Amazon Machine Image (OS template) |
+| **Instance Type** | CPU, RAM configuration |
+| **EBS** | Storage disk |
+| **Security Group** | Virtual firewall |
+| **Key Pair** | SSH login key |
+
+## Example (Very Simple)
+
+You launch:
+
+- AMI: Ubuntu
+- Instance Type: `t2.micro`
+- Storage: 8 GB
+- Security Group: Allow port 22
+
+You get:
+
+- A Linux server on the internet
+
+## Security in EC2
+
+- **Security Groups** → Allow/deny traffic
+- **Key Pair** → Secure login
+- **IAM Role** → Access AWS services safely
+
+# DNS (Domain Name System)
+
+DNS converts **human-readable names** into **IP addresses**.
+
+In simple words:
+
+DNS = Internet phone book
+
+### Example:
+
+You type:
+
+```
+www.google.com
+```
+
+DNS converts it to:
+
+```
+142.250.195.46
+```
+
+### How DNS Works (Simple Flow)
+
+1. User enters domain
+2. DNS server finds IP
+3. Browser connects to that IP
+4. Website loads
+
+### Real-Life Example
+
+- You save “Mom” in your phone
+- Phone internally uses the number
+
+# Reverse Proxy
+
+A **reverse proxy** sits **in front of servers** and forwards client requests to backend servers.
+
+In simple words:
+
+Reverse Proxy = Middleman between users and servers
+
+### Example
+
+User → **Nginx** → Backend Server
+
+User never talks directly to backend.
+
+### Why Reverse Proxy is Used?
+
+- Security (hide backend)
+- Load balancing
+- SSL termination
+- Caching
+- Request routing
+
+### Real-Life Example
+
+- Receptionist at an office
+- You don’t meet employees directly
+
+# Ingress
+
+**Ingress** is a **Kubernetes object** that manages **external access to services inside a cluster**.
+
+In simple words: Ingress = Traffic rules for Kubernetes
+
+### Example
+
+- URL `/api` → backend service
+- URL `/auth` → auth service
+
+All handled by **Ingress**
+
+### How Ingress Works
+
+1. User sends request
+2. Ingress Controller receives it
+3. Routes to correct service
+
+### Real-Life Example
+
+- Security guard directing visitors
+- Different departments inside building
+
+CLEAR DIFFERENCE (VERY IMPORTANT)
+
+| Term | Purpose | Where Used |
+| --- | --- | --- |
+| DNS | Name → IP | Internet |
+| Reverse Proxy | Request forwarding | Servers |
+| Ingress | Traffic routing | Kubernetes |
+
+## ONE-LINE MEMORY TRICK
+
+- **DNS** → *Finds the address*
+- **Reverse Proxy** → *Forwards the request*
+- **Ingress** → *Decides where inside Kubernetes*
+
+## REAL FLOW (END-TO-END)
+
+User
+↓
+DNS (Route 53)
+↓
+Reverse Proxy (ALB / Nginx)
+↓
+Ingress (Kubernetes)
+↓
+Service → Pod
