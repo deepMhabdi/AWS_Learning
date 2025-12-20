@@ -460,3 +460,151 @@ PullImage → ECS / EKS / EC2
 ## Memory Trick
 
 ECR = EC2 + Containers + Registry
+
+
+
+# AWS ECR(Elastic Container Registry)
+
+**Amazon ECR** is a **fully managed container image registry** used to **store, manage, and deploy Docker container images** securely.
+
+In simple words:
+
+ECR = Docker Hub, but private and inside AWS
+
+Key Components:
+
+| Component | Meaning |
+| --- | --- |
+| **Repository** | Stores container images |
+| **Image** | Docker image |
+| **Tag** | Version of image (`v1`, `latest`) |
+| **Registry** | AWS-managed image store |
+
+## Example
+
+You build a Docker image:
+
+```
+docker build -t my-app .
+```
+
+You push it to ECR:
+
+```
+123456789012.dkr.ecr.ap-south-1.amazonaws.com/my-app:latest
+```
+
+## Typical ECR Workflow:
+
+```
+Code
+ ↓
+Docker Build
+ ↓
+PushImage → ECR
+ ↓
+PullImage → ECS / EKS / EC2
+```
+
+## Real-Life Use Case
+
+- Store backend images
+- CI/CD pipelines
+- Microservices architecture
+- Production container deployments
+
+## ECR vs Docker Hub
+
+| ECR | Docker Hub |
+| --- | --- |
+| AWS-managed | Third-party |
+| IAM security | Username/password |
+| Private by default | Public by default |
+| Best for AWS | General use |
+
+## Memory Trick
+
+ECR = EC2 + Containers + Registry
+
+# ECS(Elastic Container Service)
+
+**AWS ECS** is a **fully managed container orchestration service** that lets you **run and manage Docker containers** without managing servers yourself.
+
+In simple words:
+
+ECS = Run Docker containers on AWS (easier than Kubernetes)
+
+![image.png](attachment:60d59474-cf04-4592-a987-b57e59b2d719:image.png)
+
+# ECS Core Components (MOST IMPORTANT)
+
+## 1️⃣ Cluster
+
+### 📌 What is a Cluster?
+
+A **cluster** is a **logical group** where your containers run.
+
+- It holds **services** and **tasks**
+- Backed by:
+    - EC2 instances **or**
+    - AWS Fargate (serverless)
+
+👉 **Cluster = Playground for containers**
+
+## 2️⃣ Task Definition
+
+### 📌 What is a Task Definition?
+
+A **task definition** is a **blueprint** that tells ECS:
+
+- Which Docker image to run
+- CPU & memory
+- Ports
+- Environment variables
+- IAM role
+
+👉 **Task Definition = Docker run instructions**
+
+## 3️⃣ Task
+
+### 📌 What is a Task?
+
+A **task** is a **running instance** of a task definition.
+
+👉 **Task = One running container (or group of containers)**
+
+**Example:**
+
+- Task Definition: `my-app`
+- Running Tasks: `3`
+
+## 4️⃣ Service
+
+### 📌 What is a Service?
+
+A **service** ensures that a **specified number of tasks are always running**.
+
+- Handles:
+    - Auto-restart
+    - Scaling
+    - Load balancer integration
+
+👉 **Service = Manager that keeps tasks alive**
+
+## 🔄 ECS FLOW (VERY IMPORTANT)
+
+```
+Task Definition
+      ↓
+     Task
+      ↓
+    Service
+      ↓
+    Cluster
+```
+
+Or in words:
+
+Task Definition → creates Tasks → managed by Service → runs inside Cluster
+
+## Real-Life Analogy (EASY TO REMEMBER)
