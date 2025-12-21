@@ -607,4 +607,94 @@ Or in words:
 
 Task Definition → creates Tasks → managed by Service → runs inside Cluster
 
-## Real-Life Analogy (EASY TO REMEMBER)
+# AWS EB(Elastic Beanstalk)
+
+**Elastic Beanstalk (EB)** is a **Platform as a Service (PaaS)** that lets you **deploy applications without managing servers**.
+
+In simple words:
+
+Elastic Beanstalk = Upload code → AWS runs it for you
+
+## What EB Manages for You (Automatically)
+
+- EC2 instances
+- Load Balancer
+- Auto Scaling
+- Health monitoring
+- Logging
+- OS & platform updates
+
+You **focus on code**, AWS handles infra.
+
+## How Elastic Beanstalk Works (Flow)
+
+```
+YourCode
+  ↓
+Elastic Beanstalk
+  ↓
+EC2 + Load Balancer + Auto Scaling
+  ↓
+Live Application
+```
+
+## Example (Node.js App)
+
+Steps:
+
+1. Zip your Node.js app
+2. Upload to Elastic Beanstalk
+3. Choose platform → Node.js
+4. Click **Deploy**
+
+🎉 Your app is live with:
+
+- URL
+- Scaling
+- Monitoring
+
+## Memory Trick
+
+EC2 + Load Balancer + Auto Scaling = Elastic Beanstalk
+
+
+# AWS LAMBDA
+
+**AWS Lambda** is a **server-less compute service** that lets you **run code without managing servers**.
+
+In simple words:
+
+Lambda = Write code → AWS runs it only when needed
+
+## Key Characteristics
+
+- No servers to manage
+- Auto scaling
+- Pay only when code runs
+- Supports multiple languages
+
+## How Lambda Works (Flow)
+
+```
+Event Trigger
+     ↓
+ LambdaFunction
+     ↓
+ ExecutionRole
+     ↓
+ Response
+```
+
+## Lambda vs EC2
+
+| Lambda | EC2 |
+| --- | --- |
+| Serverless | Server-based |
+| Auto scaling | Manual scaling |
+| Pay per execution | Pay per hour |
+| No OS access | Full OS control |
+
+## Memory Trick
+
+> Lambda runs only when called
+>
