@@ -697,4 +697,311 @@ Event Trigger
 ## Memory Trick
 
 > Lambda runs only when called
->
+
+
+# AWS RDS (Relational Database Service)
+
+**Amazon RDS** is a **managed relational database service** that lets you **create, run, and scale databases without managing the database server**.
+
+In simple words:
+
+RDS = Database in AWS, managed for you
+
+## Supported Database Engines
+
+| Engine | Type |
+| --- | --- |
+| MySQL | Relational |
+| PostgreSQL | Relational |
+| MariaDB | Relational |
+| Oracle | Relational |
+| SQL Server | Relational |
+| Aurora | AWS-optimized DB |
+
+## How RDS Works (Simple Flow)
+
+```
+Application
+   ↓
+RDSEndpoint
+   ↓
+DatabaseEngine
+```
+
+👉 You connect using a **single endpoint**, not server IP.
+
+## Example
+
+- DB Engine: MySQL
+- DB Name: `student_db`
+- Endpoint: student-db.cle1xyz.ap-south-1.rds.amazonaws.com
+
+## Memory Trick
+
+RDS = SQL database, always ON
+
+
+# AWS CDN
+
+A **CDN** is a **network of servers distributed across different geographic locations** that **deliver content to users from the nearest server**.
+
+In simple words:
+
+CDN = Faster website by serving content from nearby locations
+
+## How CDN Works (Simple Flow)
+
+```
+User Request
+    ↓
+Nearest CDN EdgeServer
+    ↓
+Content Delivered Quickly
+```
+
+## What Content is Served via CDN?
+
+- Images
+- Videos
+- CSS / JS files
+- HTML pages
+- Software downloads
+
+---
+
+## 🌍 Real-Life Example
+
+🎥 Watching YouTube:
+
+- Video loads from nearby server
+- Not from YouTube’s main data center
+
+## Benefits of CDN
+
+- Faster load times
+- Reduced latency
+- Reduced server load
+- Better availability
+- Improved security (DDoS protection)
+
+# AWS Route 53
+
+**AWS Route 53** is a **DNS (Domain Name System) service** that converts **domain names into IP addresses** and routes users to applications.
+
+In simple words:
+
+Route 53 = Internet traffic director
+
+### Example
+
+```
+www.deepmhabdi.com → 3.110.45.21
+```
+
+### Real-Life Example
+
+Calling a contact name → phone number
+
+# AWS CloudWatch
+
+**AWS CloudWatch** is a **monitoring and observability service** that tracks **metrics, logs, and events** from AWS resources.
+
+In simple words:
+
+CloudWatch = Health monitor for AWS
+
+### CloudWatch Alarms
+
+Example:
+
+```
+If CPU >80% →Send email alert
+```
+
+### Real-Life Example
+
+Smartwatch checking heart rate and alerting you
+
+# AWS CloudTrail
+
+**AWS CloudTrail** is a **security and audit service** that records **who did what, when, and from where** in your AWS account.
+
+In simple words:
+
+CloudTrail = CCTV camera for AWS actions
+
+### Example Log
+
+```
+User deep-user deleted EC2at10:30 AMfrom Mumbai
+```
+
+### Real-Life Example
+
+Office CCTV logs employee activity
+
+## Real AWS Flow (End-to-End)
+
+```json
+User
+ ↓
+Route53 (DNS)
+ ↓
+CloudFront/ ALB
+ ↓
+EC2/ Lambda
+ ↓
+CloudWatch (monitor)
+ ↓
+CloudTrail (audit)
+```
+
+# ETL(Extraction, Transformation, Loading)
+
+AWS Athena, AWS Glue, AWS Red Shift
+
+**ETL** is a **data processing pipeline** used to **collect data from multiple sources, clean/convert it, and store it in a target system** (usually a data warehouse).
+
+In simple words:
+
+ETL = Take data → clean it → store it properly
+
+## ETL – Step by Step
+
+### 1️⃣ Extract
+
+Collect data from different sources:
+
+- Databases
+- APIs
+- Logs
+- CSV / Excel files
+
+**Example:**
+
+Get sales data from MySQL database
+
+---
+
+### 2️⃣ Transform
+
+Clean and process data:
+
+- Remove duplicates
+- Convert formats
+- Apply business rules
+- Filter unwanted records
+
+**Example:**
+
+Convert date format, remove invalid orders
+
+---
+
+### 3️⃣ Load
+
+Store processed data into:
+
+- Data warehouse
+- Database
+- Data lake
+
+**Example:**
+
+Load cleaned data into Amazon Redshift
+
+## Real-Life Example (Very Easy)
+
+🧺 Washing clothes:
+
+- **Extract** → Collect dirty clothes
+- **Transform** → Wash, clean, dry
+- **Load** → Put into cupboard
+
+## Memory Trick
+
+ETL = Clean data before storing
+
+# APP INTEGRATION (SNS, SQS, SES)
+
+# App Integration (AWS)
+
+### 📌 What is App Integration?
+
+**App Integration** is about **connecting different applications/services** so they can **communicate reliably and asynchronously**.
+
+In simple words:
+
+App Integration = Apps talking to each other safely
+
+## SNS (Simple Notification Service)
+
+**AWS SNS** is a **publish–subscribe (pub/sub)** service used to **send messages to multiple subscribers at once**.
+
+👉 In simple words:
+
+> SNS = One message → many receivers
+> 
+
+### 🧾 Example
+
+- Topic: `order-updates`
+- Subscribers: Email, SMS, SQS, Lambda
+    
+    Publish once → everyone gets it.
+    
+
+### 🌍 Real-Life Analogy
+
+📢 College announcement on a loudspeaker — all students hear it.
+
+## SQS (Simple Queue Service)
+
+**AWS SQS** is a **message queue** that stores messages **until a worker processes them**.
+
+👉 In simple words:
+
+> SQS = Message waiting line
+> 
+
+### 🧾 Example
+
+- Orders placed → pushed to SQS
+- Worker processes orders one by one
+
+### 🌍 Real-Life Analogy
+
+🏦 Bank token system — customers wait, teller processes one at a time.
+
+## SES (Simple Email Service)
+
+**AWS SES** is a **cloud email service** for sending **transactional and bulk emails**.
+
+👉 In simple words:
+
+> SES = Send emails at scale
+> 
+
+### 🧾 Example
+
+- Signup confirmation
+- Password reset
+- Invoice email
+
+### 🌍 Real-Life Analogy
+
+📬 Automated email system of an e-commerce site.
+
+## Real AWS Flow (Common Pattern)
+
+```
+Event
+ ↓
+SNS (notify)
+ ↓
+SQS (queue)
+ ↓
+Worker /Lambda (process)
+ ↓
+SES (email user)
+```
