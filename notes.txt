@@ -1005,3 +1005,96 @@ Worker /Lambda (process)
  ↓
 SES (email user)
 ```
+
+# AWS CodePipeline
+
+**AWS CodePipeline** is a **CI/CD service** that **automates the steps of building, testing, and deploying code** whenever you make a change.
+
+In very simple words:
+
+CodePipeline = Automatic factory line for your code
+
+## Why Do We Need CodePipeline?
+
+### ❌ Without CodePipeline
+
+- Manually pull code
+- Manually build
+- Manually deploy
+- Errors + slow
+
+### ✅ With CodePipeline
+
+- Push code → everything runs automatically
+- Fast, repeatable, reliable
+
+## How CodePipeline Works (Flow)
+
+```
+Developer pushes code
+        ↓
+SourceStage(GitHub / CodeCommit)
+        ↓
+BuildStage(CodeBuild)
+        ↓
+DeployStage(EC2 / ECS / Lambda / Beanstalk)
+```
+
+## Simple Example
+
+You push code to GitHub:
+
+- CodePipeline detects change
+- CodeBuild runs tests
+- CodeDeploy deploys app
+- App goes live 🎉
+
+# AWS Cloudformation
+
+**AWS CloudFormation** is a service that lets you **create, update, and delete AWS resources using code** instead of clicking in the console.
+
+In very simple words:
+
+CloudFormation = Infrastructure as Code (IaC)
+
+**Write once → AWS builds everything for you**
+
+## Why CloudFormation is Needed (Problem → Solution)
+
+### ❌ Without CloudFormation
+
+- Manually create EC2, S3, IAM, VPC
+- Easy to make mistakes
+- Hard to repeat setup
+- Time-consuming
+
+### ✅ With CloudFormation
+
+- Write a template
+- Deploy in one click
+- Same setup every time
+- Easy rollback if something fails
+
+## How CloudFormation Works (Flow)
+
+```
+WriteTemplate
+    ↓
+CreateStack
+    ↓
+AWSProvisionsResources
+    ↓
+StackReady
+```
+
+## Memory Trick
+
+CloudFormation = Create AWS using code
+
+## When to Use CloudFormation
+
+✔ Repeated setups
+
+✔ Team environments
+
+✔ DevOps pipelines
